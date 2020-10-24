@@ -6,9 +6,11 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          Main: {
             screens: {
-              TabOneScreen: 'one',
+              Home: 'Home',
+              EspeciesListScreen: 'EspeciesList',
+              EspeciesDetailScreen: 'EspeciesDetail',
             },
           },
           TabTwo: {
