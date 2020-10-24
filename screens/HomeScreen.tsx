@@ -48,21 +48,36 @@ export default function HomeScreen(props: any) {
             theme.marginTop4x,
           ]}
         >
-          <TouchableOpacity style={buttonStyle} onPress={() => false}>
+          <TouchableOpacity
+            style={buttonStyle}
+            onPress={() => props.navigation.push("GuidedSearchScreen")}>
             <View style={theme.rowJustifyCenter}>
               <Ionicons name="md-search" size={24} color="white" />
               <Text style={textStyle}>BÚSQUEDA GUIADA</Text>
             </View>
           </TouchableOpacity>
+
           <TouchableOpacity
             style={buttonStyle}
-            onPress={() => props.navigation.push("EspeciesListScreen")}
-          >
+            onPress={() => props.navigation.push("EspeciesListScreen")}>
             <View style={theme.rowJustifyCenter}>
               <Ionicons name="md-list" size={24} color="white" />
               <Text style={textStyle}>LISTADO DE ESPECIES</Text>
             </View>
           </TouchableOpacity>
+
+
+          {/* esto no va aca  */}
+          <TouchableOpacity
+            style={buttonStyle}
+            onPress={() => props.navigation.push("UseModeScreen")}>
+            <View style={theme.rowJustifyCenter}>
+              <Ionicons name="md-list" size={24} color="white" />
+              <Text style={textStyle}>Modo de uso...</Text>
+            </View>
+          </TouchableOpacity>
+
+
         </View>
       </ImageBackground>
     </View>
