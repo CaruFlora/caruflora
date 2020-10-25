@@ -10,6 +10,8 @@ import EspeciesListScreen from "../screens/EspeciesListScreen";
 import EspeciesDetailScreen from "../screens/EspeciesDetailScreen";
 import MenuComponent from "../components/MenuComponent";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import GuidedSearchScreen from "../screens/GuidedSearchScreen";
+import UseModeScreen from "../screens/UseModeScreen";
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
@@ -60,6 +62,16 @@ function MainNavigator() {
         name="EspeciesDetailScreen"
         component={EspeciesDetailScreen}
         options={{ headerShown: false }}
+      />
+      <MainStack.Screen
+        name="GuidedSearchScreen"
+        component={GuidedSearchScreen}
+        options={{ title: "Búsqueda Guiada" }}
+      />
+      <MainStack.Screen
+        name="UseModeScreen"
+        component={UseModeScreen}
+        options={{ title: "Caru Flora" }}
       />
     </MainStack.Navigator>
   );

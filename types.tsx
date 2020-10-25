@@ -17,6 +17,8 @@ export type MainParamList = {
   EspeciesDetailScreen: {
     especie: especie;
   };
+  GuidedSearchScreen: undefined,
+  UseModeScreen: undefined
 }
 
 export type TabOneParamList = {
