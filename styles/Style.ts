@@ -14,6 +14,7 @@ export interface ThemedStyle {
   rowJustifyEnd: any;
   rowJustifyCenter: any;
   rowJustifySpaceEvenly: any;
+  colJustifySpaceEvenly: any;
   rowJustifyStart: any;
   rowJustifySpaceBetween: any;
   rowStretch: any;
@@ -196,6 +197,10 @@ export const buildStyle = (theme): ThemedStyle => ({
   },
   rowJustifySpaceEvenly: {
     flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  colJustifySpaceEvenly: {
+    flexDirection: 'column',
     justifyContent: 'space-evenly',
   },
   rowJustifyStart: {

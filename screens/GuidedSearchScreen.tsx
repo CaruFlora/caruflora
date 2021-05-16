@@ -1,114 +1,143 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import { StyleSheet, View, ImageBackground } from 'react-native';
-import { Button } from 'react-native-elements';
-import DynamicRadioList from '../components/DynamicRadioList';
-import ThemedStyles from '../styles/ThemedStyles';
+import React, { useCallback, useEffect, useState } from "react";
+import { StyleSheet, View, ImageBackground } from "react-native";
+import { Button } from "react-native-elements";
+import DynamicRadioList from "../components/DynamicRadioList";
+import { navigationScreens, screens } from "../constants/ScreenSections";
+import ThemedStyles from "../styles/ThemedStyles";
+import { GuidedQueryFilters, Screens, SectionType } from "../types";
 
-const background = "../assets/images/40ed82161e22f232c24fe4e57a80a75b.png";
-const defaultSections: any = [
-    {
-        id: 1,
-        title: "Forma de vida",
-        items: [
-            {
-                imageurl: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-                title: "Árbol",
-                checked: false
-            },
-            {
-                imageurl: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-                title: "Arbusto",
-                checked: false
-            },
-            {
-                imageurl: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-                title: "Palmera",
-                checked: false
-            },
-            {
-                imageurl: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-                title: "Cactus arborescente",
-                checked: false
-            }
-        ]
-    },
-    {
-        id: 2,
-        title: "¿Presencia de espinas o aguijones?",
-        items: [
-            {
-                imageurl: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-                title: "Si",
-                checked: false
-            },
-            {
-                imageurl: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-                title: "No",
-                checked: false
-            },
-        ]
-    },
-];
+type nextParms = {
+  screenIndex: number;
+  isHierba: boolean;
+  tipo?: string;
+  result: Array<any> | undefined;
+};
 
 export default function GuidedSearchScreen({ navigation, route }: any) {
-    const theme = ThemedStyles.style;
-    const [sections, setSections] = useState([]);
+  const [isHierba, setIsHierba] = useState(false);
+  const [allChecked, setAllChecked] = useState(false);
+  const [tipo, setTipo] = useState<
+    "Carnoso" | "Seco" | "Simple" | "Compuesta" | "No lo sé" | ""
+  >("");
+  const [result, setResult] = useState<Array<any> | undefined>(undefined);
 
-    useEffect(() => {
-        if (route?.params?.newSections) {
-            setSections(route?.params?.newSections);
-        } else {
-            setSections(defaultSections);
-        }
-    }, []);
-
-    const generateRandomScreen = () => {
-        navigation.push("GuidedSearchScreen", {
-            newSections: [
-                {
-                    id: Math.random(),
-                    title: Math.random(),
-                    items: [
-                        {
-                            imageurl: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-                            title: Math.random(),
-                            checked: false
-                        },
-                        {
-                            imageurl: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-                            title: Math.random(),
-                            checked: false
-                        }
-                    ]
-                }
-            ]
-        })
+  useEffect(() => {
+    if (route?.params?.isHierba) {
+      setIsHierba(true);
     }
+    if (route?.params?.result) {
+      setResult(route?.params?.result);
+    }
+  }, [setIsHierba]);
+  const theme = ThemedStyles.style;
 
-    return (
-        <View style={theme.flexContainer}>
-            <ImageBackground source={require(background)} style={styles.image}>
-                <DynamicRadioList newSections={sections}></DynamicRadioList>
-                <View style={styles.footer}>
-                    <Button title="Resultados" />
-                    <Button title="Más Opciones" onPress={generateRandomScreen} />
-                </View>
-            </ImageBackground>
+  const screenIndex: number = route?.params?.screenIndex || 0;
+  const navigationScreen: any = navigationScreens[screenIndex];
+  const screenName: Screens =
+    typeof navigationScreen.screen === "string"
+      ? navigationScreen.screen
+      : navigationScreen.screen(route?.params?.tipo);
+  const section: Array<SectionType> = screens[screenName];
+  let hasMore = true;
+  let nextIndex = screenIndex + 1;
+  if (nextIndex >= navigationScreens.length) {
+    hasMore = false;
+  } else if (navigationScreens[nextIndex].soloHierbas && !isHierba) {
+    nextIndex++;
+    if (nextIndex >= navigationScreens.length) {
+      hasMore = false;
+    }
+  }
+
+  let onSetTipo = undefined;
+  if (screenName === "hojas" || screenName === "tipoFrutos") {
+    onSetTipo = setTipo;
+  }
+
+  const nextParms: nextParms = {
+    screenIndex: nextIndex,
+    isHierba,
+    result,
+  };
+
+  if (screenName === "hojas") {
+    if (tipo === "Simple") {
+      nextParms.tipo = "hojasSimples";
+    } else {
+      nextParms.tipo = "hojasCompuestas";
+    }
+  }
+
+  if (screenName === "tipoFrutos" && isHierba) {
+    if (tipo === "Carnoso") {
+      nextParms.tipo = "frutosCarnosos";
+    } else {
+      nextParms.tipo = "frutosSecos";
+    }
+  }
+
+  const next = () => {
+    navigation.push("GuidedSearchScreen", nextParms);
+  };
+
+  const seeResults = () => {
+    if (result && result.length > 0) {
+      navigation.push("EspeciesListScreen", { especies: result });
+    }
+  };
+
+  //console.log('result', result);
+
+  return (
+    <View style={theme.flexContainer}>
+      <ImageBackground
+        resizeMode={"repeat"}
+        source={require("../assets/images/leaves.png")}
+        style={styles.image}
+      >
+        <DynamicRadioList
+          newSections={section}
+          onSetHierba={setIsHierba}
+          isHierba={isHierba}
+          onSetTipo={onSetTipo}
+          onAllChecked={setAllChecked}
+          onResult={setResult}
+        ></DynamicRadioList>
+        <View style={styles.footer}>
+          <Button
+            title={
+              result === undefined
+                ? "Resultados"
+                : `Resultados ${result.length}`
+            }
+            disabled={!result}
+            onPress={seeResults}
+          />
+          {hasMore && (
+            <Button
+              title="Más Opciones"
+              onPress={next}
+              disabled={
+                !allChecked || !result || (result && result.length === 0)
+              }
+            />
+          )}
         </View>
-    );
+      </ImageBackground>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    image: {
-        flex: 1,
-    },
-    footer: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-around",
-        height: 60,
-        width: "100%",
-        backgroundColor: "lightblue"
-    }
+  image: {
+    flex: 1,
+  },
+  footer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    height: 60,
+    width: "100%",
+    backgroundColor: "lightblue",
+  },
 });

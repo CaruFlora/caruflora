@@ -2,9 +2,10 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import ThemedStyles from "../styles/ThemedStyles";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-const MenuComponent = () => {
-  return <Ionicons name="md-menu" style={styles.menu} />;
+const MenuComponent = ({ navigation }: any) => {
+  return <Ionicons name="md-menu" style={styles.menu} onPress={navigation.openDrawer} />;
 };
 
 const styles = StyleSheet.create({

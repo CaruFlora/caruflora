@@ -1,18 +1,19 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { View, Text, ImageBackground, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useSafeArea } from "react-native-safe-area-context";
 import ThemedStyles from "../styles/ThemedStyles";
 import { Ionicons } from "@expo/vector-icons";
+const caruLogo = "../assets/images/logocaru.png";
 
-const background = "../assets/images/40ed82161e22f232c24fe4e57a80a75b.png";
-const caruLogo = "../assets/images/cOQzrzWoSVq1t01mJuho_1c022d7.jpg";
+/**
+ * implementar botones para buscar por separado
+ * esta mal en busqueda guiada las fotos
+ * borde hoja
+ *  revisar Aniseia argentina color no funcionando0
+ *  frutos secos muestran solo en no lo se
+ *  revisar familia en pantalla de detalle
+ */
 
 export default function HomeScreen(props: any) {
   const insets = useSafeArea();
@@ -28,7 +29,11 @@ export default function HomeScreen(props: any) {
 
   return (
     <View style={[styles.container]}>
-      <ImageBackground source={require(background)} style={styles.image}>
+      <ImageBackground
+        resizeMode={"repeat"}
+        source={require("../assets/images/leaves.png")}
+        style={styles.image}
+      >
         <Image
           resizeMode="contain"
           source={require(caruLogo)}
@@ -50,34 +55,39 @@ export default function HomeScreen(props: any) {
         >
           <TouchableOpacity
             style={buttonStyle}
-            onPress={() => props.navigation.push("GuidedSearchScreen")}>
+            onPress={() =>
+              props.navigation.push("GuidedSearchScreen", { isHierba: false })
+            }
+          >
             <View style={theme.rowJustifyCenter}>
               <Ionicons name="md-search" size={24} color="white" />
-              <Text style={textStyle}>BÚSQUEDA GUIADA</Text>
+              <Text style={textStyle}>BÚSQUEDA GUIADA ÁRBOLES y ARBUSTOS</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={buttonStyle}
-            onPress={() => props.navigation.push("EspeciesListScreen")}>
+            onPress={() =>
+              props.navigation.push("GuidedSearchScreen", { isHierba: true })
+            }
+          >
+            <View style={theme.rowJustifyCenter}>
+              <Ionicons name="md-search" size={24} color="white" />
+              <Text style={textStyle}>
+                BÚSQUEDA GUIADA HIERBAS, LIANAS y EPÍFITAS
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={buttonStyle}
+            onPress={() => props.navigation.push("EspeciesListScreen")}
+          >
             <View style={theme.rowJustifyCenter}>
               <Ionicons name="md-list" size={24} color="white" />
               <Text style={textStyle}>LISTADO DE ESPECIES</Text>
             </View>
           </TouchableOpacity>
-
-
-          {/* esto no va aca  */}
-          <TouchableOpacity
-            style={buttonStyle}
-            onPress={() => props.navigation.push("UseModeScreen")}>
-            <View style={theme.rowJustifyCenter}>
-              <Ionicons name="md-list" size={24} color="white" />
-              <Text style={textStyle}>Modo de uso...</Text>
-            </View>
-          </TouchableOpacity>
-
-
         </View>
       </ImageBackground>
     </View>

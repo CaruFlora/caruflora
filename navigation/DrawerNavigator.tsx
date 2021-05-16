@@ -12,34 +12,104 @@ import MenuComponent from "../components/MenuComponent";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import GuidedSearchScreen from "../screens/GuidedSearchScreen";
 import UseModeScreen from "../screens/UseModeScreen";
+import CaracterizationScreen from "../screens/CaracterizationScreen";
+import CreditScreen from "../screens/CreditScreen";
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
 export default function DrawerNavigator() {
-  const dimensions = useDimensions().window;
-
-  const isLargeScreen = dimensions.width >= 600;
   return (
-    <Drawer.Navigator
-      initialRouteName="Main"
-      edgeWidth={dimensions.width}
-      drawerType="slide"
-      //drawerContent={Drawer}
-      drawerStyle={isLargeScreen ? null : ThemedStyles.style.width90}
-    >
+    <Drawer.Navigator initialRouteName="Inicio">
+      <Drawer.Screen name="Inicio" component={MainNavigator} />
       <Drawer.Screen
-        name="Main"
-        component={MainNavigator}
-        options={{ gestureEnabled: false }}
+        name="UseModeScreen"
+        component={UseModeNavigator}
+        options={{ title: 'Modo de uso' }}
       />
-      <Drawer.Screen name="TabTwo" component={TabTwoNavigator} />
+      <Drawer.Screen
+        name="CaracterizationScreen"
+        component={CaracterizationNavigator}
+        options={{ title: 'Caracterización del Area' }}
+      />
+      <Drawer.Screen
+        name="CreditScreen"
+        component={CreditNavigator}
+        options={{ title: 'Créditos' }}
+      />
     </Drawer.Navigator>
   );
 }
 
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 const MainStack = createStackNavigator<MainParamList>();
+const UseModeStack = createStackNavigator();
+const CaracterizationStack = createStackNavigator();
+const CreditsStack = createStackNavigator();
+
+function CreditNavigator() {
+  return (
+    <CreditsStack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#9ACBEC" },
+      }}
+    >
+      <CreditsStack.Screen
+        name="CreditsScreen"
+        component={CreditScreen}
+        options={(props) => {
+          const options = {
+            title: "Créditos",
+            headerLeft: () => <MenuComponent {...props} />,
+          };
+          return options;
+        }}
+      />
+    </CreditsStack.Navigator>
+  )
+}
+
+function CaracterizationNavigator() {
+  return (
+    <CaracterizationStack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#9ACBEC" },
+      }}
+    >
+      <CaracterizationStack.Screen
+        name="CaracterizationScreen"
+        component={CaracterizationScreen}
+        options={(props) => {
+          const options = {
+            title: "Caracterización del Area",
+            headerLeft: () => <MenuComponent {...props} />,
+          };
+          return options;
+        }}
+      />
+    </CaracterizationStack.Navigator>
+  )
+}
+
+function UseModeNavigator() {
+  return (
+    <UseModeStack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#9ACBEC" },
+      }}
+    >
+      <UseModeStack.Screen
+        name="UseModeScreen"
+        component={UseModeScreen}
+        options={(props) => {
+          const options = {
+            title: "Modo de uso",
+            headerLeft: () => <MenuComponent {...props} />,
+          };
+          return options;
+        }}
+      />
+    </UseModeStack.Navigator>
+  )
+}
 
 function MainNavigator() {
   return (
@@ -51,7 +121,13 @@ function MainNavigator() {
       <MainStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ title: "Inicio", headerLeft: MenuComponent }}
+        options={(props) => {
+          const options = {
+            title: "Inicio",
+            headerLeft: () => <MenuComponent {...props} />,
+          };
+          return options;
+        }}
       />
       <MainStack.Screen
         name="EspeciesListScreen"
@@ -68,25 +144,6 @@ function MainNavigator() {
         component={GuidedSearchScreen}
         options={{ title: "Búsqueda Guiada" }}
       />
-      <MainStack.Screen
-        name="UseModeScreen"
-        component={UseModeScreen}
-        options={{ title: "Caru Flora" }}
-      />
     </MainStack.Navigator>
-  );
-}
-
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
-
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
-      />
-    </TabTwoStack.Navigator>
   );
 }
