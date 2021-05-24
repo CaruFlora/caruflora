@@ -13,11 +13,6 @@ export default {
               EspeciesDetailScreen: 'EspeciesDetail',
             },
           },
-          TabTwo: {
-            screens: {
-              TabTwoScreen: 'two',
-            },
-          },
         },
       },
       NotFound: '*',

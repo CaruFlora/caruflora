@@ -1,10 +1,9 @@
 import * as React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useDimensions } from "@react-native-community/hooks";
-import { DrawerParamList, TabTwoParamList, MainParamList } from "../types";
+import { DrawerParamList, MainParamList } from "../types";
 import ThemedStyles from "../styles/ThemedStyles";
 import { createStackNavigator } from "@react-navigation/stack";
-import TabTwoScreen from "../screens/TabTwoScreen";
 import HomeScreen from "../screens/HomeScreen";
 import EspeciesListScreen from "../screens/EspeciesListScreen";
 import EspeciesDetailScreen from "../screens/EspeciesDetailScreen";
