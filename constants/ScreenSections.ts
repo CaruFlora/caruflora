@@ -337,7 +337,7 @@ export const screens: {[k: string] : Array<SectionType>} = {
           onChecked: (callback: Function) => callback ? callback() : null,
         },
         {
-          imageurl: require("../assets/images/trifoliada.png"),
+          imageurl: require("../assets/images/Trifoliada.png"),
           title: "Trifoliada",
           checked: false,
           onChecked: (callback: Function) => callback ? callback() : null,
