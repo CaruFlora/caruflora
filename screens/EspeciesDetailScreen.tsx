@@ -78,9 +78,9 @@ const EspeciesDetailScreen = ({ route, navigation }: PropsType) => {
         </TouchableOpacity>
         <View style={[theme.centered, theme.width90]}>
           <Text style={[styles.especieText]}>
-            {especie.especie} ({especie.familia})
+            {especie.especie} {especie.autor}
           </Text>
-          <Text style={theme.fontL}>{especie.autor}</Text>
+          <Text style={theme.fontL}>{especie.familia}</Text>
         </View>
       </View>
       <ScrollView>
