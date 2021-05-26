@@ -23,7 +23,7 @@ La aplicación es un desarrollo propio de CARU, basado en los libros:
     title: "SELECCIÓN DE ESPECIES",
     description: `Las especies que se incluyen corresponden a los principales árboles y arbustos nativos junto con las hierbas, lianas y plantas acuáticas que podemos encontrar recorriendo su geografía, incluso terrenos lindantes. 
 Se excluyen la mayoría de las especies cultivadas, aquellas usadas en arbolado urbano y las implantadas. Solo unas pocas exóticas se agregan por ser invasoras en la región. 
-La base está compuesta por 105 especies de árboles y arbustos, 17º de herbáceas con descripción e ilustración        
+La base está compuesta por 105 especies de árboles y arbustos, 170 de herbáceas con descripción e ilustración        
       `,
   },
   {
