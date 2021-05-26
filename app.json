@@ -2,7 +2,7 @@
   "expo": {
     "name": "CaruFloraApp",
     "slug": "CaruFloraApp",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -28,7 +28,7 @@
     "android": {
       "package": "com.caru.florav2",
       "permissions": [],
-      "versionCode": 3
+      "versionCode": 4
     }
   }
 }
