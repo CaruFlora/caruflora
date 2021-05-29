@@ -50,8 +50,7 @@ export default function DynamicRadioList({
     if (onSetTipo && item.isTipo) {
       onSetTipo(item.title);
     }
-    const colValue = item.title === "No lo sé" || item.title === "Otra" ? '' : item.title;
-    queryManager.getByGuidedQuery(section.col, colValue, onResult, seekForHierba);
+    queryManager.getByGuidedQuery(section.col, item.title, onResult, seekForHierba);
   };
 
   const renderItem = (item: ItemType, section: SectionType, index: number) => {

@@ -406,7 +406,7 @@ export const screens: {[k: string] : Array<SectionType>} = {
       items: [
         {
           imageurl: require("../assets/images/Blanco_a_verde.png"),
-          title: "Blanco a Verdoso",
+          title: "Blanco a verdoso",
           checked: false,
           onChecked: (callback: Function) => callback ? callback() : null,
         },
@@ -497,6 +497,12 @@ export const screens: {[k: string] : Array<SectionType>} = {
           checked: false,
           onChecked: (callback: Function) => callback ? callback() : null,
         },
+        {
+          imageurl: require("../assets/images/otra.png"),
+          title: "Otra",
+          checked: false,
+          onChecked: (callback: Function) => callback ? callback() : null,
+        },
       ],
     },
   ],
@@ -530,6 +536,12 @@ export const screens: {[k: string] : Array<SectionType>} = {
         {
           imageurl: require("../assets/images/Nolose.png"),
           title: "No lo sé",
+          checked: false,
+          onChecked: (callback: Function) => callback ? callback() : null,
+        },
+        {
+          imageurl: require("../assets/images/otra.png"),
+          title: "Otra",
           checked: false,
           onChecked: (callback: Function) => callback ? callback() : null,
         },

@@ -84,13 +84,15 @@ Aceñolaza, P.G.; Rodriguez, E.E.; Gago, J.; Picasso, G. y F. Haretche. 2019. Pl
           <View style={{ flex: 1, marginLeft: 15 }}>
             <StyledText>{`<i>Citación APP:</i>
      
-  Aceñolaza, P. y E. Rodriguez. 2018. CARU-Flora. Comisión
+  Aceñolaza, P. y E. Rodriguez. 2021. CARU-Flora. Comisión
   Administradora del Río Uruguay – C.A.R.U.
 
 <i>Técnicos CARU:</i>
 
   <b>Secretario Técnico CARU:</b>
-    Arq. Marcos Di Giuseppe.
+    Juan Carlos Martínez Rodríguez.
+  <b>Secretario Administrativo:</b>
+    Marcos Di Giuseppe.
   <b>Adjunta Técnica CARU:</b>
     Dra. Mariel Bazzalo.
 

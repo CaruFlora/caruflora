@@ -1,5 +1,8 @@
 import * as SQLite from "expo-sqlite";
 import { GuidedQueryFilters } from "../types";
+
+const otra = 'Otra';
+const noSe = 'No lo sé';
 class QueryManager {
   private db = SQLite.openDatabase("caruflora.db");
   public guidedQueryFilter: Map<GuidedQueryFilters, string> = new Map([
@@ -85,23 +88,23 @@ class QueryManager {
   ) {
     this.guidedQueryFilter.set(col, value);
     let where = "";
-    this.guidedQueryFilter.forEach((v, col) => {
-      if (v !== "") {
+    this.guidedQueryFilter.forEach((queryFilterValue, col) => {
+      if (queryFilterValue !== "" && queryFilterValue !== noSe) {
         const connector = where === "" ? "" : "and ";
-        let filter = `${col} = '${v}'`;
-        if (col === 'formadevida' && v === 'Liana/Enredadera') {
+        let filter = `${col} = '${queryFilterValue}'`;
+        if (col === 'formadevida' && queryFilterValue === 'Liana/Enredadera') {
           filter = `${col} = 'Liana'`
         }
         if (isHierba) {
           switch (col) {
             case "habitat":
-              filter = `(habitat1 = '${v}' or habitat2 = '${v}')`;
+              filter = `(habitat1 = '${queryFilterValue}' or habitat2 = '${queryFilterValue}')`;
               break;
             case "disposicionhoja":
-              filter = `(disposicionhoja = '${v}' or disposicionhoja2 = '${v}')`;
+              filter = `(disposicionhoja = '${queryFilterValue}' or disposicionhoja2 = '${queryFilterValue}')`;
               break;
             case "formahoja":
-              filter = `(formahoja = '${v}' or formahoja2 = '${v}')`;
+              filter = `(formahoja = '${queryFilterValue}' or formahoja2 = '${queryFilterValue}')`;
               break;
           }
         }
