@@ -20,7 +20,7 @@ export default function CreditScreen({ navigation }: any) {
           AUTORIDADES
         </Text>
         <StyledText style={theme.textJustify}>
-          {`La Comisión Administradora del Río Uruguay (C.A.R.U.) está integrada por diez (10) Delegados, cinco (5) por cada país Parte. La Presidencia y la Vicepresidencia son ejercidas, por períodos anuales y en forma alternada, por los Presidentes de la Delegación de cada País. La presidencia actual de la Comisión la ejerce el <b>Capitán de Navío (R) Gastón Silbermann</b> y el Vicepresidente <b>Dr. Héctor Mauro Vazón</b>.`}
+          {`La Comisión Administradora del Río Uruguay (C.A.R.U.) está integrada por diez (10) Delegados, cinco (5) por cada país Parte. La Presidencia y la Vicepresidencia son ejercidas, por períodos anuales y en forma alternada, por los Presidentes de la Delegación de cada País. La presidencia actual de la Comisión la ejerce el <b>Sr. Mario Daniel Ayala Barrios</b> y <b>Dr. José Eduardo Laurito</b>.`}
         </StyledText>
         <Text style={[theme.marginVertical3x]}>
           En la actualidad la nómina de Delegados por cada parte es la
@@ -33,19 +33,19 @@ export default function CreditScreen({ navigation }: any) {
             </Text>
             <Text style={[theme.bold, theme.marginBottom2x]}>Presidente</Text>
             <Text style={theme.marginBottom2x}>
-              Capitán de Navío (R) Gastón Silbermann
+              Sr. Mario Daniel Ayala Barrios
             </Text>
             <Text style={[theme.bold, theme.marginBottom2x]}>
               Vicepresidente
             </Text>
-            <Text style={theme.marginBottom2x}>Arq. Rogelio Texeira</Text>
+            <Text style={theme.marginBottom2x}>Sr. Miguel R. Feris Grassi</Text>
             <Text style={[theme.bold, theme.marginBottom2x]}>Delegados</Text>
             <Text style={theme.marginBottom2x}>
-              Capitán de Navío (CG) Germán Martella
+              Esc. María Eugenia Almirón Schulz
             </Text>
-            <Text style={theme.marginBottom2x}>Ing. Quim. Silvia Aguinaga</Text>
+            <Text style={theme.marginBottom2x}>Ing. Agrim. Roberto Pérez Rodino</Text>
             <Text style={theme.marginBottom2x}>
-              Ing. Agrim. Roberto Pérez Rodino
+              CN (R) Miguel Angel de Ocampo Dimartino
             </Text>
           </View>
           <View style={{ flex: 1, marginLeft: 15 }}>
@@ -53,16 +53,16 @@ export default function CreditScreen({ navigation }: any) {
               Delegación Argentina
             </Text>
             <Text style={[theme.bold, theme.marginBottom2x]}>Presidente</Text>
-            <Text style={theme.marginBottom2x}>Dr. Héctor Mauro Vazón</Text>
+            <Text style={theme.marginBottom2x}>Dr. José Eduardo Lauritto</Text>
             <Text style={[theme.bold, theme.marginBottom2x]}>
               Vicepresidente
             </Text>
             <Text style={theme.marginBottom2x}>
-              Emb. Eduardo Andrés Villalba
+              Dr. Rodolfo M. Ojea Quintana
             </Text>
             <Text style={[theme.bold, theme.marginBottom2x]}>Delegados</Text>
-            <Text style={theme.marginBottom2x}>Juan Enrique Ruiz Orrico</Text>
-            <Text style={theme.marginBottom2x}>Dr. Jorge Diego Satto</Text>
+            <Text style={theme.marginBottom2x}>Emb. Extraordinaria y Plenipotenciaria María Marta Insausti Urdapilleta</Text>
+            <Text style={theme.marginBottom2x}>Ing. Hernán Darío Orduna</Text>
             <Text style={theme.marginBottom2x}>Arq. Eduardo Caminal</Text>
           </View>
         </View>
